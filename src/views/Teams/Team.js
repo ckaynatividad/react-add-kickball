@@ -6,7 +6,7 @@ import { getTeamById } from '../../services/teams';
 function Team({
   match: {
     params: { id },
-  },
+  }, user
 }) {
   const [team, setTeam] = useState({});
   const [loading, setLoading] = useState(true);
@@ -29,9 +29,11 @@ function Team({
       <p>
         {team.city}, {team.state}
       </p>
-      <p>
-        <Link to={`/teams/${id}/edit`}>Edit Team</Link>
-      </p>
+      {user && (      
+        <p>
+          <Link to={`/teams/${id}/edit`}>Edit Team</Link>
+        </p>)}
+
     </>
   );
 }
