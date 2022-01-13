@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 import { deleteTeamById, getTeams } from '../../services/teams';
 
-function Teams({ user }) {
+function Teams(user) {
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,17 +48,13 @@ function Teams({ user }) {
                     <Link to={`/teams/${team.id}`}>{team.name}</Link>
                   </td>
 
-                  {!user && (
-                    <Link to={`/teams/${team.id}`}>
-                      <button type="button" className="btn-view">
-                    View
-                      </button>
-                    </Link>
-                  )}
-                  
                   {user && (
                     <td>
-                  
+                      <Link to={`/teams/${team.id}`}>
+                        <button type="button" className="btn-view">
+                    View
+                        </button>
+                      </Link>
                       <Link to={`/teams/${team.id}/edit`}>
                         <button type="button" className="btn-edit">
                         Edit
@@ -68,7 +64,15 @@ function Teams({ user }) {
                       Delete
                       </button>
                     </td>)}
-                  
+                  {!user && (
+                    <td>
+                      <Link to={`/teams/${team.id}`}>
+                        <button type="button" className="btn-view">
+                    View
+                        </button>
+                      </Link>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
